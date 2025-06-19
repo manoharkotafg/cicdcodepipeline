@@ -1,14 +1,21 @@
+version: 0.2
+
 phases:
   install:
     commands:
+      - echo Installing dependencies...
       - npm install
+
   build:
     commands:
+      - echo Building Next.js app...
       - npm run build
+
   post_build:
     commands:
-      - echo "Zipping application for Elastic Beanstalk..."
-      - zip -r ../app.zip .
+      - echo Packaging app for Elastic Beanstalk...
+      - zip -r app.zip .
+
 artifacts:
   files:
-    - ../app.zip
+    - app.zip
