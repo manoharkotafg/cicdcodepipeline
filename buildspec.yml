@@ -8,13 +8,12 @@ phases:
   build:
     commands:
       - npm run build
-
   post_build:
     commands:
-      - echo "Zipping deployment files..."
-      - zip -r app.zip ./
-      - echo "Zip created. Contents:"
+      - echo "Zipping for Elastic Beanstalk..."
+      - zip -r app.zip . -x "*.git*" "node_modules/*"
+      - echo "Listing contents of app.zip..."
       - unzip -l app.zip
-artifacts:
+
   files:
     - app.zip
